@@ -1,0 +1,25 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+
+{% block title %}
+Posts by Category
+{% endblock title %}
+
+
+{% block content %}
+
+    <h3 class="text-center">Все посты категории "{{ category.category }}" <span class="text-muted fs-6 fw-normal"></span></h3>
+    {% if is_not_subscriber %}
+        <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm"> Подписаться </a></p>
+    {% endif %}
+    <hr>
+
+
+           {% for post in category_news_list %}
+<h5>{{ post.title_post|censor }} {{ post.time_post|date:'d M Y' }}</h5>
+{{ post.text_post|censor|truncatewords:20 }}
+           {% endfor %}
+
+
+{% endblock content %}

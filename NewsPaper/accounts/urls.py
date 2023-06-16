@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import (
-    NewsList, NewsDetail, PostCreateView, PostUpdateView, PostDeleteView, NewsSearch
+    NewsList, NewsDetail, PostCreateView, PostUpdateView,
+    PostDeleteView, NewsSearch, CategoryListView, subscribe
 )
 
 
@@ -16,5 +17,8 @@ urlpatterns = [
     path('articles/<int:pk>/edit/', PostUpdateView.as_view(), name='article_edit'),
     path('articles/<int:pk>/delete/', PostDeleteView.as_view(), name='article_delete'),
 
-    path('search/', NewsSearch.as_view(), name='news_search')
+    path('search/', NewsSearch.as_view(), name='news_search'),
+
+    path('categories/<int:pk>/', CategoryListView.as_view(), name='category_list'),
+    path('categories/<int:pk>/subscribe/', subscribe, name='subscribe')
 ]
